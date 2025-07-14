@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import HomeSection from './components/sections/HomeSection';
+import AboutSection from './components/sections/AboutSection';
+import ServicesSection from './components/sections/ServicesSection';
+import ContactSection from './components/sections/ContactSection';
+import PrivacyPolicy from './components/legal/PrivacyPolicy';
+import TermsAndConditions from './components/legal/TermsAndConditions';
+import RefundPolicy from './components/legal/RefundPolicy';
+import BookSessionSection from './components/sections/BookSessionSection';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomeSection />} />
+          <Route path="/about" element={<AboutSection />} />
+          <Route path="/services" element={<ServicesSection />} />
+          <Route path="/book-session" element={<BookSessionSection />} />
+          <Route path="/contact" element={<ContactSection />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

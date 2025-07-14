@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 const BookingForm = ({ submitted, formData, setFormData }) => {
 
   const handleChange = (e) => {

@@ -23,6 +23,10 @@ const BookSessionSection = () => {
   const [isPayment, setIsPayment] = useState(false);
 
   const goToPayment = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
     setIsPayment(true);
   }
 

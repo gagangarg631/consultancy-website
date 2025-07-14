@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import HomeSection from './components/sections/HomeSection';
@@ -9,10 +9,26 @@ import PrivacyPolicy from './components/legal/PrivacyPolicy';
 import TermsAndConditions from './components/legal/TermsAndConditions';
 import RefundPolicy from './components/legal/RefundPolicy';
 import BookSessionSection from './components/sections/BookSessionSection';
+import { useEffect } from 'react';
+
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }, [pathname]);
+
+    return null;
+  };
+
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-white">
         <Navigation />
         <Routes>

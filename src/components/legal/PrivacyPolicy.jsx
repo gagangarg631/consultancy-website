@@ -1,11 +1,12 @@
 import React from 'react';
+import { contact } from '../../data/contact';
 
 const PrivacyPolicy = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-800">
       <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
       <p className="mb-4">
-        This Privacy Policy describes how <strong>[Your Business Name]</strong> ("we", "our", or "us") collects, uses, and discloses your personal information when you use our services or access our website.
+        This Privacy Policy describes how <strong>{contact.businessName}</strong> ("we", "our", or "us") collects, uses, and discloses your personal information when you use our services or access our website.
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">Information We Collect</h2>

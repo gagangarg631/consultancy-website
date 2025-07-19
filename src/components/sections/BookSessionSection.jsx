@@ -1,11 +1,11 @@
-// src/components/sections/BookSessionSection.jsx
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Calendar, MessageCircle, CheckCircle } from 'lucide-react';
-import BookSessionModal from '../BookSessionModal';
-import QRCodePayment from '../QRCodePayment';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import BookingForm from '../BookSessionForm';
 import SessionModeSelector from '../ModeSelector';
+import { contact } from '../../data/contact';
+import { getLatestBookingByEmail } from '../../services/firestore/bookings';
+import { useDebounce } from 'use-debounce';
 
 const BookSessionSection = () => {
   const location = useLocation();
@@ -18,21 +18,49 @@ const BookSessionSection = () => {
     date: '',
     time: '',
     message: '',
-    mode: 'online'
+    mode: 'online',
   });
-  const [isPayment, setIsPayment] = useState(false);
+
+  const [debouncedEmail] = useDebounce(formData.email, 500);
+
+  const navigate = useNavigate();
 
   const goToPayment = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-    setIsPayment(true);
+    const data = {
+      ...sessionInfo,
+      formData,
+      amount: sessionInfo.amount[formData.sessionNumber]
+    }
+
+    
+    navigate('/book-session/payments', { state: data })
   }
 
   const selectMode = (mode) => {
     setFormData({ ...formData, mode })
   }
+
+
+  const fetchLatestBooking = async () => {
+    const docs = await getLatestBookingByEmail(debouncedEmail);
+    if (docs.length > 0) {
+      setFormData({ ...formData, sessionNumber: (docs[0].sessionNumber ?? 1) + 1 })
+    } else {
+      setFormData({ ...formData, sessionNumber: 1 })
+    }
+  }
+
+  const isValidEmail = (email) => {
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+  };
+
+  useEffect(() => {
+    if (debouncedEmail && isValidEmail(debouncedEmail)) {
+      fetchLatestBooking();
+    } else {
+      setFormData({ ...formData, sessionNumber: null })
+    }
+  }, [debouncedEmail]);
 
   return (
     <div className="bg-white py-16">
@@ -43,12 +71,17 @@ const BookSessionSection = () => {
             Taking the first step towards better mental health is just a click away.
           </p>
         </div>
-
-        {!isPayment && (
-          <div className="flex mx-auto justify-center gap-8 mt-10 sm:flex-row flex-col">
+        <div className="flex mx-auto justify-center gap-8 mt-10 sm:flex-row flex-col">
           <div className="w-full sm:w-2/5 gap-4 flex flex-col">
             <div className="shadow-md rounded-xl p-4">
-              <h3 className="text-xl font-semibold text-gray-800 mb-1">{sessionInfo.title}</h3>
+              <div className="flex justify-between">
+                <h3 className="text-xl font-semibold text-gray-800 mb-1">{sessionInfo.title}</h3>
+                {formData.sessionNumber && (
+                  <h3 className="text-xl font-semibold text-green-700 mb-1">
+                    ₹{(sessionInfo.amount[formData.sessionNumber]).toLocaleString("en-IN")}
+                  </h3>
+                )}
+              </div>
               <p className="text-gray-600 mb-4">{sessionInfo.description}</p>
               <SessionModeSelector onSelect={selectMode} sessionMode={formData.mode} />
             </div>
@@ -57,41 +90,32 @@ const BookSessionSection = () => {
               <div className="space-y-4">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-blue-600 mr-3" />
-                  <span className="text-gray-700">+91 [Your Phone Number]</span>
+                  <span className="text-gray-700">{contact.phone}</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-blue-600 mr-3" />
-                  <span className="text-gray-700">[your-email@mindspace.com]</span>
+                  <span className="text-gray-700">{contact.email}</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-blue-600 mr-3" />
-                  <span className="text-gray-700">[Your Clinic Address]</span>
+                  <span className="text-gray-700">{contact.address}</span>
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-5 h-5 text-blue-600 mr-3" />
-                  <span className="text-gray-700">Mon-Sat: 9:00 AM - 7:00 PM</span>
+                  <span className="text-gray-700">{contact.timings}</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="bg-white rounded-2xl w-full sm:w-3/5 flex items-center justify-center">
-            <BookingForm submitted={goToPayment} formData={formData} setFormData={setFormData} />
+            <BookingForm 
+              submitted={goToPayment} 
+              formData={formData} 
+              setFormData={setFormData} 
+            />
           </div>
         </div>
-        )}
-
-        {isPayment && (
-          <div className="bg-white mx-auto rounded-xl shadow-md p-6 md:w-1/2 w-full border text-center mt-4">
-            <div className="mb-4 text-left flex flex-col items-center">
-              <h3 className="text-lg font-semibold text-gray-800">Payment Details</h3>
-              <p className="text-sm text-gray-600">{sessionInfo.title}</p>
-              <p className="text-sm text-gray-600">Session: <span className="font-medium">{formData.mode}</span></p>
-              <p className="text-sm text-gray-700 mt-1">Amount: <span className="font-bold text-blue-600">₹999</span></p>
-            </div>
-            <QRCodePayment />
-          </div>
-        )}
       </div>
     </div>
   );

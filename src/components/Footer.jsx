@@ -30,9 +30,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="privacy-policy" className="hover:text-white">Privacy Policy</a></li>
-              <li><a href="terms-and-conditions" className="hover:text-white">Terms & Conditions</a></li>
-              <li><a href="refund-policy" className="hover:text-white">Refund Policy</a></li>
+              <li><button onClick={() => navigate("privacy-policy")} className="hover:text-white">Privacy Policy</button></li>
+              <li><button onClick={() => navigate("terms-and-conditions")} className="hover:text-white">Terms & Conditions</button></li>
+              <li><button onClick={() => navigate("refund-policy")} className="hover:text-white">Refund Policy</button></li>
             </ul>
           </div>
         </div>

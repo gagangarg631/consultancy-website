@@ -1,6 +1,7 @@
 import React from 'react';
 import ServiceCard from '../ui/ServiceCard';
 import { services } from '../../data/services';
+import Testimonials from '../Testimonials';
 
 const ServicesSection = () => {
   return (
@@ -13,11 +14,13 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
         </div>
+
+        <Testimonials />
       </div>
     </div>
   );

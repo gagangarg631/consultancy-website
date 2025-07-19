@@ -1,24 +1,15 @@
-// src/components/sections/AboutSection.jsx
+import { CheckCircle } from 'lucide-react';
 import React from 'react';
-import { CheckCircle, Brain } from 'lucide-react';
-import JourneySection from '../JourneySection';
-import JoinUsSection from '../JoinUsSection';
+import { useNavigate } from 'react-router-dom';
 
-const AboutSection = () => {
+const FounderSection = () => {
+    const navigate = useNavigate();
+
   return (
-    <div className="bg-white py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">About The Mindspace Centre</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Founded with a vision to make mental health support accessible, inclusive, and effective for everyone.
-          </p>
-        </div>
-
-        <JourneySection />
-
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div>
+    <section className="p-6 md:flex md:items-center md:justify-between">
+      {/* Text Content */}
+      <div className="md:w-1/2 space-y-6">
+        <div>
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">Meet Your Therapist: Ashish Sura</h3>
             <p className="text-gray-600 mb-6">
               I’m Ashish Sura, a counselling psychologist committed to creating a compassionate and supportive therapeutic space. My approach combines structured psychological techniques with deep, empathetic listening. I work with adolescents, adults, and families to help them manage:
@@ -60,35 +51,34 @@ const AboutSection = () => {
               Whether it’s your first therapy session or you’re returning to work on deeper patterns, I welcome you to” The MindSpace Centre” — where healing begins with understanding.
             </p>
           </div>
-          <div className="bg-blue-50 rounded-xl p-8">
-            <div className="text-center">
-              <div className="w-32 h-32 bg-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <Brain className="w-16 h-16 text-blue-600" />
-              </div>
-              <h4 className="text-xl font-semibold text-gray-800 mb-2">Mr. Ashish Sura</h4>
-              <p className="text-blue-600 mb-4">Counselling Psychologist & Founder</p>
-              <p className="text-gray-600 text-sm">
-                Licensed clinical psychologist with [X] years of experience specializing in anxiety, 
-                depression, trauma therapy, and adolescent mental health. Certified in CBT, DBT, 
-                and trauma-informed care approaches.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-6">Our Mission</h3>
-            <p className="text-gray-600 mb-6">
-              At The MindSpace Centre, our mission is to break the silence around mental health and create a safe, stigma-free space where every person feels understood, accepted, and supported. We believe mental health struggles aren’t something to hide or be ashamed of—they’re part of being human. Through compassionate conversations and practical therapy, we help individuals move beyond labels and find real healing, clarity, and strength in their everyday lives.
-            </p>
-          </div>
-        </div>
-
-        <JoinUsSection />
+        <button 
+            className="mt-4 px-6 py-3 text-white rounded-lg font-medium bg-blue-600 transition"
+            onClick={() => navigate('/about')}
+        >
+          More about my Journey
+        </button>
       </div>
-    </div>
+
+      {/* Images and Name */}
+      <div className="mt-10 md:mt-0 md:w-1/2 flex flex-col items-center relative">
+        <div className="relative w-full flex justify-center">
+          <img
+            src="https://via.placeholder.com/180x220.png?text=Profile+1"
+            alt="Founder"
+            className="w-48 h-60 object-cover rounded-xl shadow-lg z-10"
+          />
+          <img
+            src="https://via.placeholder.com/160x200.png?text=Profile+2"
+            alt="Founder Speaking"
+            className="w-40 h-52 object-cover rounded-xl shadow-md absolute right-0 bottom-[-20px] z-0"
+          />
+        </div>
+
+        <h3 className="mt-6 text-lg font-semibold text-gray-800">Founder & Psychotherapist</h3>
+      </div>
+    </section>
   );
 };
 
-export default AboutSection;
+export default FounderSection;

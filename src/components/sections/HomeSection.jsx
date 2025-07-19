@@ -1,6 +1,8 @@
 import ServiceCard from '../ui/ServiceCard';
 import { keyServices } from '../../data/services';
 import { useNavigate } from 'react-router-dom';
+import FounderSection from '../FounderSection';
+import Testimonials from '../Testimonials';
 
 const HomeSection = () => {
   const navigate = useNavigate();
@@ -9,13 +11,14 @@ const HomeSection = () => {
     <div className="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
-            Because healing starts with being heard.
+          <h1 className="text-5xl md:text-6xl font-bold mb-6" style={{ color: "#EF4444" }}>
+             THE MINDSPACE CENTRE          
+          </h1>
+          <h1 className="text-5xl md:text-4xl font-bold text-brown-600 mb-6">
+            A Space That Feels Like Someone’s Truly Listening.
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Welcome to The Mindspace Centre, where your mental health journey begins with compassion, 
-            understanding, and professional expertise. We provide safe, confidential, and effective 
-            psychological support in Hindi and English.
+            At The MindSpace Centre, healing doesn’t feel clinical — it feels like sitting with someone who understands. A space where your thoughts are safe, your feelings are valid, and your journey matters.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
@@ -31,6 +34,12 @@ const HomeSection = () => {
           {keyServices.map((service) => (
             <ServiceCard key={service.id} service={service} actionCentered />
           ))}
+        </div>
+
+        <FounderSection />
+
+        <div className="mt-10">
+          <Testimonials />
         </div>
       </div>
     </div>

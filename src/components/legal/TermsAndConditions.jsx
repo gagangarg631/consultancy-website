@@ -1,4 +1,5 @@
 import React from 'react';
+import { contact } from '../../data/contact';
 
 const TermsAndConditions = () => {
   return (
@@ -6,7 +7,7 @@ const TermsAndConditions = () => {
       <h1 className="text-3xl font-bold mb-6">Terms & Conditions</h1>
 
       <p className="mb-4">
-        These Terms & Conditions govern your use of <strong>[Your Business Name]</strong>'s services. By booking a session or using our website, you agree to comply with these terms.
+        These Terms & Conditions govern your use of <strong>{contact.businessName}</strong>'s services. By booking a session or using our website, you agree to comply with these terms.
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">Services</h2>

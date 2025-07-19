@@ -1,4 +1,5 @@
 import React from 'react';
+import { contact } from '../../data/contact';
 
 const RefundPolicy = () => {
   return (
@@ -6,7 +7,7 @@ const RefundPolicy = () => {
       <h1 className="text-3xl font-bold mb-6">Refund Policy</h1>
 
       <p className="mb-4">
-        At <strong>[Your Business Name]</strong>, we strive to offer high-quality psychological services. However, we understand that sometimes plans change.
+        At <strong>{contact.businessName}</strong>, we strive to offer high-quality psychological services. However, we understand that sometimes plans change.
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">Refund Eligibility</h2>

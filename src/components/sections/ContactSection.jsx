@@ -3,6 +3,7 @@ import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { testimonials } from '../../data/testimonials';
 import TestimonialCard from '../ui/TestimonialCard';
+import { contact } from '../../data/contact';
 
 const ContactSection = () => {
   return (
@@ -21,30 +22,21 @@ const ContactSection = () => {
               <Phone className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Phone</h3>
-            <p className="text-gray-600">+91 [Your Phone Number]</p>
+            <p className="text-gray-600">{contact.phone}</p>
           </div>
           <div className="text-center">
             <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
               <Mail className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Email</h3>
-            <p className="text-gray-600">[your-email@mindspace.com]</p>
+            <p className="text-gray-600">{contact.email}</p>
           </div>
           <div className="text-center">
             <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
               <MapPin className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Location</h3>
-            <p className="text-gray-600">[Your Clinic Address]</p>
-          </div>
-        </div>
-
-        <div className="bg-blue-50 rounded-xl p-8">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Client Testimonials</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-            ))}
+            <p className="text-gray-600">{contact.address}</p>
           </div>
         </div>
       </div>

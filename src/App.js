@@ -10,6 +10,9 @@ import TermsAndConditions from './components/legal/TermsAndConditions';
 import RefundPolicy from './components/legal/RefundPolicy';
 import BookSessionSection from './components/sections/BookSessionSection';
 import { useEffect } from 'react';
+import PaymentSection from './components/sections/PaymentSection';
+import WorkshopsAndAwareness from './components/sections/WorkshopsAndAwareness';
+import SpecialClinics from './components/sections/SpecialClinics';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -35,7 +38,10 @@ function App() {
           <Route path="/" element={<HomeSection />} />
           <Route path="/about" element={<AboutSection />} />
           <Route path="/services" element={<ServicesSection />} />
+          <Route path="/services/workshop-and-awareness" element={<WorkshopsAndAwareness />} />
+          <Route path="/services/special-clinics" element={<SpecialClinics />} />
           <Route path="/book-session" element={<BookSessionSection />} />
+          <Route path="/book-session/payments" element={<PaymentSection />} />
           <Route path="/contact" element={<ContactSection />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

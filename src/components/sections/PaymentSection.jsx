@@ -23,7 +23,8 @@ const PaymentSection = () => {
             name: formData.name,
             serviceName: title,
             date: formData.date,
-            time: formData.time
+            time: formData.time,
+            phone: formData.phone
         }
         const res = await checkPaymentStatus(qrData.id, bookingData);
         if (!res?.data?.paid) {

@@ -3,6 +3,7 @@ import React from 'react';
 import { CheckCircle, Brain } from 'lucide-react';
 import JourneySection from '../JourneySection';
 import JoinUsSection from '../JoinUsSection';
+import { image1, image2, image3, image4, image5 } from '../../assets';
 
 const AboutSection = () => {
   return (
@@ -62,8 +63,13 @@ const AboutSection = () => {
           </div>
           <div className="bg-blue-50 rounded-xl p-8">
             <div className="text-center">
-              <div className="w-32 h-32 bg-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <Brain className="w-16 h-16 text-blue-600" />
+              <div className="w-32 h-32 bg-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                {/* <Brain className="w-16 h-16 text-blue-600" /> */}
+                <img
+                  src={image3}
+                  alt="Founder in cafe"
+                  className="rounded-2xl mt-10 object-contain w-full h-auto"
+                />
               </div>
               <h4 className="text-xl font-semibold text-gray-800 mb-2">Mr. Ashish Sura</h4>
               <p className="text-blue-600 mb-4">Counselling Psychologist & Founder</p>

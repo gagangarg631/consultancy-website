@@ -121,7 +121,7 @@ const BookingForm = ({ submitted, formData, setFormData, loading = false }) => {
 
   return (
       <form onSubmit={handleSubmit} className="space-y-4 w-full">
-    
+        <p className="text-green-800 mb-4 font-semibold italic">Congratulations and proud that you being showing courage of prioritising your mental health.</p>
         <div className="flex gap-2 md:flex-row flex-col">
           <input
             type="email"

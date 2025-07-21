@@ -46,6 +46,13 @@ const razorpay = new Razorpay({
 const FAST2SMS_API_KEY = defineSecret("FAST2SMS_API_KEY");
 const DOCTOR_PHONE = defineSecret("DOCTOR_PHONE")
 
+function truncateWithEllipsis(msg) {
+  return msg.length > 40
+    ? msg.slice(0, 40 - 3) + "..."
+    : msg;
+}
+
+
 const checkBalanceAndNotify = async () => {
   try {
     const fast2smsApiKey = process.env.FAST2SMS_API_KEY;
@@ -58,24 +65,24 @@ const checkBalanceAndNotify = async () => {
 
     if (response && response.data && response.data.wallet < 150) {
       const balance = response.data.wallet;
-      const message = `Hello Ashish, your SMS wallet balance is low. Current balance: ₹${balance}. Please recharge soon to ensure uninterrupted booking alerts for mindspace centre Consultations.`;
-      sendSms(message);
+      const message = `Hello Ashish, Low wallet balance. Balance: Rs.${balance}. Please recharge soon to ensure uninterrupted booking alerts for mindspace centre Consultations.`;
+      setTimeout(() => {
+        sendSms(message);
+      }, 5000);
     }
   } catch (error) {
     console.error('Error checking fast2sms balance: ', error);
   }
 }
 
-const sendSms = async (message) => {
+const sendSms = async (message, numbers = process.env.DOCTOR_PHONE) => {
   try {
     const fast2smsApiKey = process.env.FAST2SMS_API_KEY;
-    const doctorPhone = process.env.DOCTOR_PHONE;
     
     const payload = {
       route: "q",
       message,
-      // numbers: doctorPhone,
-      numbers: "9992389346"
+      numbers
     };
 
     const response = await axios.post("https://www.fast2sms.com/dev/bulkV2", payload, {
@@ -88,7 +95,7 @@ const sendSms = async (message) => {
     console.log('SMS sent successfully: ', response.data);
 
   } catch (error) {
-    res.status(500).send({error: error.message});
+    console.error('Error sending sms: ', error);
   }
 }
 
@@ -132,14 +139,16 @@ exports.checkPaymentStatus = onRequest(
       // Check if at least 1 payment is made
       if (payments.items && payments.items.length > 0 && payments.items[0].status === 'captured') {
         if (bookingData) {
-          const { name, serviceName, date, time } = bookingData;
-          const message = `
-            New Booking Received:
-            Patient ${name} has booked a ${serviceName} Consultation for ${date} at ${time}.
-          `
+          const { name, serviceName, date, time, phone } = bookingData;
+          const messageToDoctor = `New Booking Received: ${name} (${phone}) has booked a ${truncateWithEllipsis(serviceName)} Consultation for ${date} at ${time}.`
 
           // Send sms to doctor regarding new booking.
-          await sendSms(message);
+          await sendSms(messageToDoctor);
+
+          const messageToPatient = `Hi ${name}, your booking is confirmed! You've scheduled a ${truncateWithEllipsis(serviceName)} consultation on ${date} at ${time}. Thank you!`;
+
+          // Send sms to patient regarding new booking.
+          await sendSms(messageToPatient, phone);
           
           // Check remaining balance and notify doctor if low balance.
           await checkBalanceAndNotify();

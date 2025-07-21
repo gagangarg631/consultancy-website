@@ -3,7 +3,7 @@ import axios from "axios";
 export const createQRCode = async ({ amount, description }) => {
     try {
         const response = await axios.post(
-            'https://createqrcode-lvlb6jctqq-uc.a.run.app',
+            'https://createqrcode-fdnvglwxvq-uc.a.run.app',
             { 
                 amount, 
                 description,
@@ -26,14 +26,16 @@ export const checkPaymentStatus = async (qr_code_id, bookingData) => {
         const interval = setInterval(async ()  => {
             try {
                 const response = await axios.post(
-                    'https://checkpaymentstatus-lvlb6jctqq-uc.a.run.app', 
+                    'https://checkpaymentstatus-fdnvglwxvq-uc.a.run.app', 
                     { 
                         qr_code_id,
                         bookingData
                     }
                 )
-                clearInterval(interval);
-                resolve(response.data);
+                if (response.data.paid) {
+                    clearInterval(interval);
+                    resolve(response.data);
+                }
             } catch (error) {
                 reject(`Error checking payment status: ${error}`);
             }

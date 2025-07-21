@@ -1,12 +1,14 @@
-import { collection, addDoc, getDocs, query, where, orderBy, limit } from "firebase/firestore";
+import { collection, setDoc, doc, getDocs, query, where, orderBy, limit } from "firebase/firestore";
 import db from "../../firebase";
 
 const bookingsRef = collection(db, "bookings");
 
 export const createBooking = async (data) => {
   try {
-      const docRef = await addDoc(bookingsRef, data);
-      console.log("Document written with ID: ", docRef.id);
+      const customId = `${data.name} | ${data.phone} | ${data.email} | ${data.date} at ${data.time}`;
+      const docRef = doc(bookingsRef, customId);
+      await setDoc(docRef, data);
+      console.log("Document written with ID: ", customId);
       return docRef
   } catch (e) {
       console.error("Error creating document: ", e);

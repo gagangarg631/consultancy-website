@@ -86,10 +86,16 @@ const BookSessionSection = () => {
               <SessionModeSelector onSelect={selectMode} sessionMode={formData.mode} />
             </div>
             {formData.mode === "clinic" && (
-              <div className="p-4 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-md">
-                <strong>Note:</strong> For clinic sessions, we’re currently associated with <strong>Holy Mind Care</strong>,
-                under the consultation of <strong>Dr. Aman Mehta</strong> (Psychiatrist, MBBS, MD).
-              </div>
+              <>
+                <div className="p-4 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-md">
+                  <strong>Note:</strong> In-Clinic counselling sessions are conducted at Holy Mind Care, Hisar, Haryana. Here we are associated with a renowned psychiatrist, <strong>Dr. Aman Mehta (MBBS, MD)</strong> for counselling and therapy sessions. Also, clients may be referred for psychiatric consultation if needed after assessment.
+                </div>
+                <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm rounded-md">
+                  <p>Here you need to confirm your appointment before arriving hospital for transparency and avoiding rush.</p>
+                  <b><i>Google location link will be shared upon appointment confirmation.</i></b>
+                </div>
+
+              </>
             )}
             <div className="bg-blue-50 rounded-xl p-4">
               <h3 className="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
@@ -118,7 +124,7 @@ const BookSessionSection = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl w-full sm:w-3/5 flex items-center justify-center">
+          <div className="bg-white rounded-2xl w-full sm:w-3/5 flex justify-center">
             <BookingForm 
               submitted={goToPayment} 
               formData={formData} 

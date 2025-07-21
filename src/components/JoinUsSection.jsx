@@ -15,7 +15,7 @@ const JoinUsSection = () => {
         <div className="grid gap-8 md:grid-cols-3 justify-center items-start">
   {/* Instagram */}
   <a
-    href="https://www.instagram.com/aashiish_007?igsh=c3BoeGp5emhlaXZ1&utm_source=qr"
+    href="https://www.instagram.com/the_mindspace_centre?igsh=emMydWJzemR0aDNx&utm_source=qr"
     target="_blank"
     rel="noopener noreferrer"
     className="group bg-pink-50 shadow-md rounded-2xl px-6 py-8 flex flex-col items-center transition hover:scale-105 duration-300 h-full"

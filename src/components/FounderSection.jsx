@@ -1,6 +1,7 @@
 import { CheckCircle } from 'lucide-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { image1, image3, image4 } from '../assets';
 
 const FounderSection = () => {
     const navigate = useNavigate();
@@ -64,14 +65,14 @@ const FounderSection = () => {
       <div className="mt-10 md:mt-0 md:w-1/2 flex flex-col items-center relative">
         <div className="relative w-full flex justify-center">
           <img
-            src="https://via.placeholder.com/180x220.png?text=Profile+1"
+            src={image3}
             alt="Founder"
             className="w-48 h-60 object-cover rounded-xl shadow-lg z-10"
           />
           <img
-            src="https://via.placeholder.com/160x200.png?text=Profile+2"
+            src={image4}
             alt="Founder Speaking"
-            className="w-40 h-52 object-cover rounded-xl shadow-md absolute right-0 bottom-[-20px] z-0"
+            className="w-40 h-52 lg:block hidden object-cover rounded-xl shadow-md absolute right-0 bottom-[-20px] z-0"
           />
         </div>
 

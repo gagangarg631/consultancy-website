@@ -14,7 +14,7 @@ const ServiceCard = ({ service, actionCentered = false }) => {
   };
   
   return (
-    <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: service.bgColor ?? 'white'}}>
+    <div className="bg-white rounded-xl p-6 flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow relative" style={{ backgroundColor: service.bgColor ?? 'white'}}>
       <div className="mb-4">
         <IconComponent className={`w-8 h-8 ${service.color}`} />
       </div>
@@ -22,11 +22,17 @@ const ServiceCard = ({ service, actionCentered = false }) => {
       <p className="text-gray-600 mb-4">{service.description}</p>
       
       {service.link ? (
-        <button onClick={() => navigate(service.link)} className={`text-blue-600 font-semibold hover:text-blue-700 flex items-center ${actionCentered ? 'mx-auto' : ''}`}>
+        <button 
+          onClick={() => navigate(service.link)} 
+          className={`text-blue-600 font-semibold hover:text-blue-700 flex items-center ${actionCentered ? 'mx-auto' : ''}`}
+        >
           Know more {!actionCentered && <ArrowRight className="w-4 h-4 ml-1" />}
         </button>
       ) : (
-        <button onClick={handleGoToBookSession} className={`text-blue-600 font-semibold hover:text-blue-700 flex items-center ${actionCentered ? 'mx-auto' : ''}`}>
+        <button 
+          onClick={handleGoToBookSession} 
+          className={`text-blue-600 font-semibold hover:text-blue-700 flex items-center ${actionCentered ? 'mx-auto' : ''}`}
+        >
           Book now {!actionCentered && <ArrowRight className="w-4 h-4 ml-1" />}
         </button>
       )}

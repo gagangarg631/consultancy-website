@@ -11,10 +11,10 @@ const BookingForm = ({ submitted, formData, setFormData, loading = false }) => {
 
   const availableSlots = {
     online: [
-      ...generateTimeSlots("08:30", "10:30", 60),
-      ...generateTimeSlots("17:00", "20:00", 60)
+      ...generateTimeSlots("08:30", "10:00"),
+      ...generateTimeSlots("17:00", "20:00")
     ],
-    clinic: generateTimeSlots("11:00", "16:00", 60)
+    clinic: generateTimeSlots("10:30", "16:00")
   };
 
   const [bookedSlots, setBookedSlots] = useState({});
@@ -174,6 +174,10 @@ const BookingForm = ({ submitted, formData, setFormData, loading = false }) => {
           mode={formData.mode}
           loading={loadingSlots}
         />
+
+        <p className="text-sm text-red-600 font-medium mt-6 mb-2 text-center bg-red-50 border border-red-200 px-4 py-2 rounded-md">
+          ⚠️ Before booking, please contact the therapist to confirm your appointment.
+        </p>
 
         <textarea
           name="message"

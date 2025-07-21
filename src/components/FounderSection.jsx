@@ -47,7 +47,7 @@ const FounderSection = () => {
                 <span className="text-gray-700">Schizophrenia, Bipolar, and OCD</span>
               </div>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 font-semibold mt-4">
               Whether it’s your first therapy session or you’re returning to work on deeper patterns, I welcome you to” The MindSpace Centre” — where healing begins with understanding.
             </p>
           </div>
@@ -75,7 +75,7 @@ const FounderSection = () => {
           />
         </div>
 
-        <h3 className="mt-6 text-lg font-semibold text-gray-800">Founder & Psychotherapist</h3>
+        <h3 className="mt-6 text-lg font-semibold text-gray-800">Founder & Psychologist</h3>
       </div>
     </section>
   );

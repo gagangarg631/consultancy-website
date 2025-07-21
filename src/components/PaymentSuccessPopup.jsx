@@ -1,6 +1,6 @@
 import { CheckCircle } from 'lucide-react';
 
-export default function PaymentSuccessPopup() {
+export default function PaymentSuccessPopup({ mode = 'online' }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
@@ -18,6 +18,17 @@ export default function PaymentSuccessPopup() {
         <p className="text-gray-600 mt-1 mb-4">
           Our psychologist will contact you shortly.
         </p>
+
+        {mode === 'clinic' && (
+          <a
+            href="https://maps.app.goo.gl/1yWyXNcgQjjZy8XB7?g_st=com.google.maps.preview.copy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-blue-600 underline"
+          >
+            View on Google Maps
+          </a>
+        )}
       </div>
     </div>
   );

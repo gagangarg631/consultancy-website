@@ -20,7 +20,7 @@ const RefundPolicy = () => {
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">How to Request a Refund</h2>
       <p className="mb-4">
-        Email us at <strong>[Your Email]</strong> with your full name, payment ID, and appointment time. Refunds are processed within 5–7 business days.
+        Email us at <strong>ashishsura007@gmail.com</strong> with your full name, payment ID, and appointment time. Refunds are processed within 5–7 business days.
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">Disputes</h2>

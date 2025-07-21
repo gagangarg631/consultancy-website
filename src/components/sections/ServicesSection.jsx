@@ -1,7 +1,7 @@
-import React from 'react';
 import ServiceCard from '../ui/ServiceCard';
 import { services } from '../../data/services';
 import Testimonials from '../Testimonials';
+import FAQ from '../FAQ';
 
 const ServicesSection = () => {
   return (
@@ -21,6 +21,8 @@ const ServicesSection = () => {
         </div>
 
         <Testimonials />
+
+        <FAQ />
       </div>
     </div>
   );

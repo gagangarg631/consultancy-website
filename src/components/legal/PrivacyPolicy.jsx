@@ -39,12 +39,12 @@ const PrivacyPolicy = () => {
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">Your Rights</h2>
       <p className="mb-4">
-        You may access, correct, or request deletion of your personal information by contacting us at <strong>[Your Email]</strong>.
+        You may access, correct, or request deletion of your personal information by contacting us at <strong>ashishsura007@gmail.com</strong>.
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">Contact</h2>
       <p>
-        If you have questions about this Privacy Policy, email us at <strong>[Your Email]</strong>.
+        If you have questions about this Privacy Policy, email us at <strong>ashishsura007@gmail.com</strong>.
       </p>
     </div>
   );

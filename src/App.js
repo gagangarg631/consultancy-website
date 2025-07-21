@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import PaymentSection from './components/sections/PaymentSection';
 import WorkshopsAndAwareness from './components/sections/WorkshopsAndAwareness';
 import SpecialClinics from './components/sections/SpecialClinics';
+import InternshipAndTraining from './components/sections/InternshipAndTraining';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/about" element={<AboutSection />} />
           <Route path="/services" element={<ServicesSection />} />
           <Route path="/services/workshop-and-awareness" element={<WorkshopsAndAwareness />} />
+          <Route path="/services/internship-and-training" element={<InternshipAndTraining />} />
           <Route path="/services/special-clinics" element={<SpecialClinics />} />
           <Route path="/book-session" element={<BookSessionSection />} />
           <Route path="/book-session/payments" element={<PaymentSection />} />

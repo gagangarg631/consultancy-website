@@ -1,11 +1,15 @@
 const WorkshopsAndAwareness = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-800">
-      <h1 className="text-3xl font-bold mb-6">Workshops & Awareness Programs</h1>
+      <h1 className="text-3xl font-bold mb-6 rounded-2xl bg-green-100 p-6">Workshops & Awareness Programs</h1>
 
-      <p className="mb-4">
-        At The MindSpace Centre, we believe mental health conversations shouldn’t feel heavy or complicated. Our workshops are simple, real, and designed to connect with people where they are — whether it's a school, college, workplace, or community group.
-      </p>
+      <div className="rounded-2xl bg-green-50 p-6">
+        <p className="mb-4">
+          At The MindSpace Centre, we believe mental health conversations shouldn’t feel heavy or complicated. Our workshops are simple, real, and designed to connect with people where they are — whether it's a school, college, workplace, or community group.
+        </p>
+      </div>
+
+      <div className="rounded-2xl bg-pink-50 p-6 mt-6">
 
       <h2 className="text-2xl font-semibold mt-8 mb-2">We talk about things most people hesitate to discuss:</h2>
       <ul className="list-disc ml-6 space-y-2">
@@ -40,6 +44,8 @@ const WorkshopsAndAwareness = () => {
         <li>Space where questions are welcomed, not judged</li>
         <li>Led by a psychologist who listens more than lectures</li>
       </ul>
+
+      </div>
 
       <p className="mt-4">
        <i>

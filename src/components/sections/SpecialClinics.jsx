@@ -1,12 +1,15 @@
 const SpecialClinics = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-800">
-      <h1 className="text-3xl font-bold mb-6">Special Clinics at The MindSpace Centre</h1>
+      <h1 className="text-3xl font-bold mb-6 rounded-2xl bg-green-100 p-6">Special Clinics at The MindSpace Centre</h1>
 
-      <p className="mb-4">
-        At The MindSpace Centre, we understand that certain challenges need focused, specialized care. That’s why we offer dedicated clinics, each designed to address specific mental health needs in a practical, compassionate, and personalized way.
-      </p>
+      <div className="rounded-2xl bg-green-50 p-6">
+        <p className="mb-4">
+          At The MindSpace Centre, we understand that certain challenges need focused, specialized care. That’s why we offer dedicated clinics, each designed to address specific mental health needs in a practical, compassionate, and personalized way.
+        </p>
+      </div>
 
+      <div className="rounded-2xl bg-pink-50 p-6 my-6">
       <h2 className="text-2xl font-semibold mt-8 mb-2">1. Academic Management Clinic</h2>
       <p className="mb-2">
         Helping students manage studies without burnout.
@@ -61,6 +64,8 @@ const SpecialClinics = () => {
             (For individuals or families seeking support with any form of addiction.)
         </i>
       </p>
+
+      </div>
 
       <p>
         <b>

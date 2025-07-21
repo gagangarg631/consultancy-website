@@ -19,7 +19,13 @@ const PaymentSection = () => {
     const [qrData, setQRData] = useState({});
 
     const startStatusCheck = async () => {
-        const res = await checkPaymentStatus(qrData.id);
+        const bookingData = {
+            name: formData.name,
+            serviceName: title,
+            date: formData.date,
+            time: formData.time
+        }
+        const res = await checkPaymentStatus(qrData.id, bookingData);
         if (!res?.data?.paid) {
             const booking = await createBooking(formData);
             setPaymentSuccess(true);
@@ -62,7 +68,7 @@ const PaymentSection = () => {
 
           {/* <CountdownTimer expiryTimestamp={qrData.close_by} countCompleted={countCompleted} /> */}
 
-          {paymentSuccess && <PaymentSuccessPopup />}
+          {paymentSuccess && <PaymentSuccessPopup mode={formData.mode} />}
         </div>
     )
 }

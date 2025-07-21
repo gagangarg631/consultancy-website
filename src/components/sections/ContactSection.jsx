@@ -4,6 +4,8 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { testimonials } from '../../data/testimonials';
 import TestimonialCard from '../ui/TestimonialCard';
 import { contact } from '../../data/contact';
+import JoinUsSection from '../JoinUsSection';
+import PaymentSuccessPopup from '../PaymentSuccessPopup';
 
 const ContactSection = () => {
   return (
@@ -16,29 +18,31 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="text-center">
+        <div className="grid md:grid-cols-3 gap-8 mb-10">
+          <div className="group bg-blue-50 shadow-md rounded-2xl px-6 py-8 flex flex-col items-center transition hover:scale-105 duration-300 h-full">
             <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
               <Phone className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Phone</h3>
             <p className="text-gray-600">{contact.phone}</p>
           </div>
-          <div className="text-center">
+          <div className="group bg-blue-50 shadow-md rounded-2xl px-6 py-8 flex flex-col items-center transition hover:scale-105 duration-300 h-full">
             <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
               <Mail className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Email</h3>
             <p className="text-gray-600">{contact.email}</p>
           </div>
-          <div className="text-center">
+          <div className="group bg-blue-50 shadow-md rounded-2xl px-6 py-8 flex flex-col items-center transition hover:scale-105 duration-300 h-full">
             <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
               <MapPin className="w-8 h-8 text-blue-600" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Location</h3>
-            <p className="text-gray-600">{contact.address}</p>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Address</h3>
+            <p>{contact.address}</p>
           </div>
         </div>
+
+        <JoinUsSection />
       </div>
     </div>
   );

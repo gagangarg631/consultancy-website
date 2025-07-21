@@ -21,13 +21,16 @@ export const createQRCode = async ({ amount, description }) => {
     }
 }
 
-export const checkPaymentStatus = async (qr_code_id) => {
+export const checkPaymentStatus = async (qr_code_id, bookingData) => {
     return new Promise((resolve, reject) => {
         const interval = setInterval(async ()  => {
             try {
                 const response = await axios.post(
                     'https://checkpaymentstatus-lvlb6jctqq-uc.a.run.app', 
-                    { qr_code_id }
+                    { 
+                        qr_code_id,
+                        bookingData
+                    }
                 )
                 clearInterval(interval);
                 resolve(response.data);

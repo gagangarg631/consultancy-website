@@ -85,6 +85,12 @@ const BookSessionSection = () => {
               <p className="text-gray-600 mb-4">{sessionInfo.description}</p>
               <SessionModeSelector onSelect={selectMode} sessionMode={formData.mode} />
             </div>
+            {formData.mode === "clinic" && (
+              <div className="p-4 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-md">
+                <strong>Note:</strong> For clinic sessions, we’re currently associated with <strong>Holy Mind Care</strong>,
+                under the consultation of <strong>Dr. Aman Mehta</strong> (Psychiatrist, MBBS, MD).
+              </div>
+            )}
             <div className="bg-blue-50 rounded-xl p-4">
               <h3 className="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
               <div className="space-y-4">
@@ -96,14 +102,18 @@ const BookSessionSection = () => {
                   <Mail className="w-5 h-5 text-blue-600 mr-3" />
                   <span className="text-gray-700">{contact.email}</span>
                 </div>
-                <div className="flex items-center">
-                  <MapPin className="w-5 h-5 text-blue-600 mr-3" />
-                  <span className="text-gray-700">{contact.address}</span>
-                </div>
-                <div className="flex items-center">
-                  <Clock className="w-5 h-5 text-blue-600 mr-3" />
-                  <span className="text-gray-700">{contact.timings}</span>
-                </div>
+                {formData.mode === 'clinic' && (
+                  <>
+                    <div className="flex items-center">
+                      <MapPin className="w-5 h-5 text-blue-600 mr-3" />
+                      <span className="text-gray-700">{contact.address}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="w-5 h-5 text-blue-600 mr-3" />
+                      <span className="text-gray-700">{contact.timings}</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

@@ -56,7 +56,7 @@ const AboutSection = () => {
                 <span className="text-gray-700">Schizophrenia, Bipolar, and OCD</span>
               </div>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 font-semibold mt-4">
               Whether it’s your first therapy session or you’re returning to work on deeper patterns, I welcome you to” The MindSpace Centre” — where healing begins with understanding.
             </p>
           </div>
@@ -68,9 +68,7 @@ const AboutSection = () => {
               <h4 className="text-xl font-semibold text-gray-800 mb-2">Mr. Ashish Sura</h4>
               <p className="text-blue-600 mb-4">Counselling Psychologist & Founder</p>
               <p className="text-gray-600 text-sm">
-                Licensed clinical psychologist with [X] years of experience specializing in anxiety, 
-                depression, trauma therapy, and adolescent mental health. Certified in CBT, DBT, 
-                and trauma-informed care approaches.
+                Hi, I'm Ashish sura. I have a Master's degree in Psychology with Post Graduation Diploma in Guidance and counselling and I'm trained in more than 10 different therapies. I've had the privilege of helping over 300+ clients through
               </p>
             </div>
           </div>

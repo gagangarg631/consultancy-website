@@ -7,9 +7,10 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-const { response } = require("express");
 const {setGlobalOptions} = require("firebase-functions");
 const {onRequest} = require("firebase-functions/https");
+const functions = require("firebase-functions");
+const axios = require("axios");
 const logger = require("firebase-functions/logger");
 const cors = require("cors")({
   origin: "http://localhost:3000",
@@ -42,6 +43,51 @@ const razorpay = new Razorpay({
     headers: {'Content-Type': 'application/json'} 
 })
 
+const FAST2SMS_API_KEY = functions.config().fast2sms.key;
+const doctorPhone = functions.config().doctor.phone;
+
+const checkBalanceAndNotify = async () => {
+  try {
+    const response = await axios.post("https://www.fast2sms.com/dev/wallet", {}, {
+      headers: {
+        Authorization: FAST2SMS_API_KEY,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response && response.data && response.data.wallet < 150) {
+      const balance = response.data.wallet;
+      const message = `Hello Ashish, your SMS wallet balance is low. Current balance: ₹${balance}. Please recharge soon to ensure uninterrupted booking alerts for mindspace centre Consultations.`;
+      sendSms(message);
+    }
+  } catch (error) {
+    console.error('Error checking fast2sms balance: ', error);
+  }
+}
+
+const sendSms = async (message) => {
+  try {
+    const payload = {
+      route: "q",
+      message,
+      // numbers: doctorPhone,
+      numbers: "9992389346"
+    };
+
+    const response = await axios.post("https://www.fast2sms.com/dev/bulkV2", payload, {
+      headers: {
+        Authorization: FAST2SMS_API_KEY,
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log('SMS sent successfully: ', response.data);
+
+  } catch (error) {
+    res.status(500).send({error: error.message});
+  }
+}
+
 exports.createQrCode = onRequest((req, res) => {
   cors(req, res, async () => {
     try {
@@ -67,12 +113,25 @@ exports.createQrCode = onRequest((req, res) => {
 exports.checkPaymentStatus = onRequest((req, res) => {
   cors(req, res, async () => {
     try {
-      const { qr_code_id } = req.body;
+      const { qr_code_id, bookingData } = req.body;
 
       const payments = await razorpay.qrCode.fetchAllPayments(qr_code_id);
       
       // Check if at least 1 payment is made
       if (payments.items && payments.items.length > 0 && payments.items[0].status === 'captured') {
+        if (bookingData) {
+          const { name, serviceName, date, time } = bookingData;
+          const message = `
+            New Booking Received:
+            Patient ${name} has booked a ${serviceName} Consultation for ${date} at ${time}.
+          `
+
+          // Send sms to doctor regarding new booking.
+          await sendSms(message);
+          
+          // Check remaining balance and notify doctor if low balance.
+          await checkBalanceAndNotify();
+        }
         res.send({ paid: true, payment: payments.items[0] });
       } else {
         res.send({ paid: false });

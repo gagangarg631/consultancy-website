@@ -11,10 +11,7 @@ const HomeSection = () => {
     <div className="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6" style={{ color: "#EF4444" }}>
-             THE MINDSPACE CENTRE          
-          </h1>
-          <h1 className="text-5xl md:text-4xl font-bold text-brown-600 mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-brown-600 mb-6">
             A Space That Feels Like Someone’s Truly Listening.
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">

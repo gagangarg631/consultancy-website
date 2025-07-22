@@ -22,6 +22,15 @@ export default function SlotBookingForm({ availableSlots, bookedSlots, onSlotSel
 
   const getAvailableSlots = () => availableSlots[mode] || [];
 
+  const formatDate = (inputDate) => {
+    const date = new Date(inputDate);
+
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-GB', options);
+
+    return formattedDate;
+  }
+
   return (
     <div className="mx-auto space-y-6">
       <label className="block">
@@ -67,7 +76,7 @@ export default function SlotBookingForm({ availableSlots, bookedSlots, onSlotSel
 
       {formData.time && (
         <div className="text-green-600 font-medium mt-2">
-          Selected Slot: {formData.date} at {formData.time}
+          Selected Slot: {formatDate(formData.date)} at {formData.time}
         </div>
       )}
     </div>

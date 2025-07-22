@@ -25,13 +25,24 @@ const BookSessionSection = () => {
 
   const navigate = useNavigate();
 
+  const formatDate = (inputDate) => {
+    const date = new Date(inputDate);
+
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-GB', options);
+
+    return formattedDate;
+  }
+
   const goToPayment = () => {
     const data = {
       ...sessionInfo,
-      formData,
+      formData: {
+        ...formData,
+        date: formatDate(formData.date),
+      },
       amount: sessionInfo.amount[formData.sessionNumber]
     }
-
     
     navigate('/book-session/payments', { state: data })
   }
@@ -95,7 +106,6 @@ const BookSessionSection = () => {
                 <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm rounded-md">
                   <b>Here you need to confirm your appointment before arriving hospital for transparency and avoiding rush.</b>
                 </div>
-
               </>
             )}
             <div className="bg-blue-50 rounded-xl p-4">

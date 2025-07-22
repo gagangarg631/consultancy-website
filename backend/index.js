@@ -13,7 +13,7 @@ const { defineSecret } = require("firebase-functions/params");
 const axios = require("axios");
 const logger = require("firebase-functions/logger");
 const cors = require("cors")({
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://themindspacecentre.in"],
 });
 const Razorpay = require("razorpay");
 
@@ -38,8 +38,8 @@ setGlobalOptions({ maxInstances: 10 });
 // });
 
 const razorpay = new Razorpay({
-    key_id: "rzp_test_pjLZOSt4nnkqTG",
-    key_secret: "cQej594ZTw2AxDhupTp5nU4S",
+    key_id: "rzp_live_c2WCQ7nOAwDMGE",
+    key_secret: "yDH7cvWPqwfE6yYOobDxNDS8",
     headers: {'Content-Type': 'application/json'} 
 })
 
@@ -63,7 +63,7 @@ const checkBalanceAndNotify = async () => {
       },
     });
 
-    if (response && response.data && response.data.wallet < 150) {
+    if (response && response.data && response.data.wallet < 60) {
       const balance = response.data.wallet;
       const message = `Hello Ashish, Low wallet balance. Balance: Rs.${balance}. Please recharge soon to ensure uninterrupted booking alerts for mindspace centre Consultations.`;
       setTimeout(() => {

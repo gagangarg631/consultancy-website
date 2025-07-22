@@ -67,9 +67,10 @@ const BookSessionSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-2">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">Book Your Session</h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-green-800 text-xl mb-4 font-semibold italic">Congratulations! It's something to be proud of — you're showing courage by prioritizing your mental health.</p>
+          {/* <p className="text-xl text-gray-600">
             Taking the first step towards better mental health is just a click away.
-          </p>
+          </p> */}
         </div>
         <div className="flex mx-auto justify-center gap-8 mt-10 sm:flex-row flex-col">
           <div className="w-full sm:w-2/5 gap-4 flex flex-col">
@@ -88,11 +89,11 @@ const BookSessionSection = () => {
             {formData.mode === "clinic" && (
               <>
                 <div className="p-4 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-md">
-                  <strong>Note:</strong> In-Clinic counselling sessions are conducted at Holy Mind Care, Hisar, Haryana. Here we are associated with a renowned psychiatrist, <strong>Dr. Aman Mehta (MBBS, MD)</strong> for counselling and therapy sessions. Also, clients may be referred for psychiatric consultation if needed after assessment.
+                  <strong>Note:</strong> In-Clinic counselling sessions are conducted at Holy Mind Care, Hisar, Haryana. Here we are associated with a renowned psychiatrist, <strong>Dr. Aman Mehta (MBBS, MD)</strong> for counselling and therapy sessions.
+                  <p><i>Also, clients may be referred for psychiatric consultation if needed after assessment.</i></p>
                 </div>
                 <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm rounded-md">
-                  <p>Here you need to confirm your appointment before arriving hospital for transparency and avoiding rush.</p>
-                  <b><i>Google location link will be shared upon appointment confirmation.</i></b>
+                  <b>Here you need to confirm your appointment before arriving hospital for transparency and avoiding rush.</b>
                 </div>
 
               </>

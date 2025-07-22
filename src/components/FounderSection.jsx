@@ -1,7 +1,6 @@
 import { CheckCircle } from 'lucide-react';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { image1, image3, image4 } from '../assets';
+import { image3 } from '../assets';
 
 const FounderSection = () => {
     const navigate = useNavigate();
@@ -62,21 +61,30 @@ const FounderSection = () => {
       </div>
 
       {/* Images and Name */}
-      <div className="mt-10 md:mt-0 md:w-1/2 flex flex-col items-center relative">
-        <div className="relative w-full flex justify-center">
+      <div className="mt-10 md:mt-0 md:w-1/2 flex flex-col items-end relative">
+        {/* <div className="relative w-full flex justify-center">
           <img
-            src={image3}
+            src={image6}
             alt="Founder"
             className="w-48 h-60 object-cover rounded-xl shadow-lg z-10"
           />
           <img
-            src={image4}
+            src={img1}
             alt="Founder Speaking"
             className="w-40 h-52 lg:block hidden object-cover rounded-xl shadow-md absolute right-0 bottom-[-20px] z-0"
           />
+        </div> */}
+        <div className="md:w-2/3 mt-10 md:mt-0 flex flex-col items-center space-y-6">
+          <div className="rounded-2xl overflow-hidden p-1">
+            <img
+              src={image3}
+              alt="Founder in cafe"
+              className="rounded-2xl object-cover w-full h-auto"
+            />
+          </div>
+          <h3 className="mt-6 text-lg font-semibold text-gray-800">Psychologist & Founder</h3>
         </div>
 
-        <h3 className="mt-6 text-lg font-semibold text-gray-800">Founder & Psychologist</h3>
       </div>
     </section>
   );

@@ -60,7 +60,7 @@ export const services = [
     description: `Supportive, non-judgmental therapy to help individuals manage addiction patterns and move towards healthier coping methods.`,
     icon: SmilePlus,
     color: "text-lime-800",
-    bgColor: "rgb(239 255 133)",
+    bgColor: "rgb(225 211 75 / 92%)",
     amount: {
       1: 699,
       2: 699,

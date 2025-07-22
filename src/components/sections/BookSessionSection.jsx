@@ -6,10 +6,14 @@ import SessionModeSelector from '../ModeSelector';
 import { contact } from '../../data/contact';
 import { getLatestBookingByEmail } from '../../services/firestore/bookings';
 import { useDebounce } from 'use-debounce';
+import PaymentSuccessPopup from '../PaymentSuccessPopup';
+import { createQRCode } from '../../services/razorpay/payments';
 
 const BookSessionSection = () => {
   const location = useLocation();
   const sessionInfo = location.state;
+  const [confirmed, setConfirmed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -45,6 +49,24 @@ const BookSessionSection = () => {
     }
     
     navigate('/book-session/payments', { state: data })
+  }
+
+  const formSubmitted = async () => {
+    if (formData.mode === 'online') {
+      goToPayment();
+    } else {
+      setLoading(true);
+      const bookingData = {
+        name: formData.name,
+        serviceName: sessionInfo.title,
+        date: formatDate(formData.date),
+        time: formData.time,
+        phone: formData.phone
+      }
+      await createQRCode({ amount: 0, description: '', confirmed: true, bookingData });
+      setLoading(false);
+      setConfirmed(true);
+    }
   }
 
   const selectMode = (mode) => {
@@ -137,13 +159,16 @@ const BookSessionSection = () => {
 
           <div className="bg-white rounded-2xl w-full sm:w-3/5 flex justify-center">
             <BookingForm 
-              submitted={goToPayment} 
+              submitted={formSubmitted} 
               formData={formData} 
               setFormData={setFormData} 
+              loading={loading}
             />
           </div>
         </div>
       </div>
+
+      {confirmed && <PaymentSuccessPopup mode={formData.mode} title="Booking Confirmed!" />}
     </div>
   );
 };

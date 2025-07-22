@@ -1,12 +1,14 @@
 import axios from "axios";
 
-export const createQRCode = async ({ amount, description }) => {
+export const createQRCode = async ({ amount, description, confirmed = false, bookingData = {} }) => {
     try {
         const response = await axios.post(
             'https://createqrcode-fdnvglwxvq-uc.a.run.app',
             { 
                 amount, 
                 description,
+                confirmed,
+                bookingData
             },
             { 
                 headers: { 

@@ -1,6 +1,6 @@
 import { CheckCircle } from 'lucide-react';
 
-export default function PaymentSuccessPopup({ mode = 'online' }) {
+export default function PaymentSuccessPopup({ mode = 'online', title = "Payment Successful!" }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
@@ -11,7 +11,7 @@ export default function PaymentSuccessPopup({ mode = 'online' }) {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-green-700 mb-2">Payment Successful!</h2>
+        <h2 className="text-2xl font-bold text-green-700 mb-2">{title}</h2>
         <p className="text-gray-700">
           Thank you for your booking.
         </p>

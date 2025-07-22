@@ -99,6 +99,23 @@ const sendSms = async (message, numbers = process.env.DOCTOR_PHONE) => {
   }
 }
 
+const startSmsProcess = async (bookingData) => {
+  const { name, serviceName, date, time, phone } = bookingData;
+
+  const messageToDoctor = `New Booking Received: ${name} (${phone}) has booked a ${truncateWithEllipsis(serviceName)} Consultation for ${date} at ${time}.`
+
+  // Send sms to doctor regarding new booking.
+  await sendSms(messageToDoctor);
+
+  const messageToPatient = `Hi ${name}, your booking is confirmed! You've scheduled a ${truncateWithEllipsis(serviceName)} consultation on ${date} at ${time}. Thank you!`;
+
+  // Send sms to patient regarding new booking.
+  await sendSms(messageToPatient, phone);
+  
+  // Check remaining balance and notify doctor if low balance.
+  await checkBalanceAndNotify();
+}
+
 exports.createQrCode = onRequest(
   {
     secrets: [FAST2SMS_API_KEY, DOCTOR_PHONE]
@@ -106,19 +123,25 @@ exports.createQrCode = onRequest(
   (req, res) => {
   cors(req, res, async () => {
     try {
-      const {amount, description} = req.body;
+      const {amount, description, confirmed, bookingData } = req.body;
 
-      const response = await razorpay.qrCode.create({
-        type: "upi_qr",
-        name: "Payment to YourApp",
-        usage: "single_use",
-        fixed_amount: true,
-        payment_amount: amount * 100, // in paise
-        description: description || "QR Payment",
-        close_by: Math.floor(Date.now() / 1000) + 120 + 10
-      });
+      if (confirmed) {
+        await startSmsProcess(bookingData);
+        res.status(200).send();
+      } else {
+        const response = await razorpay.qrCode.create({
+          type: "upi_qr",
+          name: "Payment to YourApp",
+          usage: "single_use",
+          fixed_amount: true,
+          payment_amount: amount * 100, // in paise
+          description: description || "QR Payment",
+          close_by: Math.floor(Date.now() / 1000) + 120 + 10
+        });
+  
+        res.status(200).send(response);
+      }
 
-      res.status(200).send(response);
     } catch (error) {
       res.status(500).send({error: error.message});
     }
@@ -139,19 +162,7 @@ exports.checkPaymentStatus = onRequest(
       // Check if at least 1 payment is made
       if (payments.items && payments.items.length > 0 && payments.items[0].status === 'captured') {
         if (bookingData) {
-          const { name, serviceName, date, time, phone } = bookingData;
-          const messageToDoctor = `New Booking Received: ${name} (${phone}) has booked a ${truncateWithEllipsis(serviceName)} Consultation for ${date} at ${time}.`
-
-          // Send sms to doctor regarding new booking.
-          await sendSms(messageToDoctor);
-
-          const messageToPatient = `Hi ${name}, your booking is confirmed! You've scheduled a ${truncateWithEllipsis(serviceName)} consultation on ${date} at ${time}. Thank you!`;
-
-          // Send sms to patient regarding new booking.
-          await sendSms(messageToPatient, phone);
-          
-          // Check remaining balance and notify doctor if low balance.
-          await checkBalanceAndNotify();
+          startSmsProcess(bookingData);
         }
         res.send({ paid: true, payment: payments.items[0] });
       } else {

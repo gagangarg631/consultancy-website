@@ -74,7 +74,7 @@ const AboutSection = () => {
               <h4 className="text-xl font-semibold text-gray-800 mb-2">Mr. Ashish Sura</h4>
               <p className="text-blue-600 mb-4">Counselling Psychologist & Founder</p>
               <p className="text-gray-600 text-sm">
-                Hi, I'm Ashish sura. I have a Master's degree in Psychology with Post Graduation Diploma in Guidance and counselling and I'm trained in more than 10 different therapies. I've had the privilege of helping over 300+ clients through
+                Hi, I'm Ashish sura. I have a Master's degree in Psychology with Post Graduation Diploma in Guidance and counselling and I'm trained in more than 10 different therapies. I've had the privilege of helping over 300+ clients.
               </p>
             </div>
           </div>

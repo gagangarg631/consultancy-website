@@ -6,7 +6,7 @@ const JourneySection = () => {
     <section className="mb-12 md:flex md:items-start md:justify-between p-8 rounded-3xl" style={{ backgroundColor: 'rgb(147 172 252 / 39%)' }}>
       {/* Text Section */}
       <div className="md:w-2/3 space-y-3 text-gray-800 text-lg leading-relaxed">
-        <h3 className="text-5xl mb-10 font-semibold" style={{ lineHeight: '56px' }}>Journey to Healing, A Path to Growth together ✨{'\t'}🧠</h3>
+        <h3 className="text-3xl md:text-5xl mb-10 font-semibold leading-[32px] md:leading-[56px]">A Journey to Healing, A Path to Growth together ✨{'\t'}🧠</h3>
         <p>
           At The MindSpace Centre, we believe every mind deserves a safe, non-judgmental space to heal and grow. Founded by <b>Ashish Sura</b>, a counselling psychologist, The MindSpace Centre is where real conversations help you work through stress, anxiety, past hurts, and everyday struggles.
         </p>
